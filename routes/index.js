@@ -11,7 +11,7 @@ router.get('/doit', function(req, res, next) {
     res.render('doit', { title: 'Doit' });
 });
 
-module.exports = router;
+//module.exports = router;
 
 var bodyParser = require('body-parser');
 var path = require ('path'); //to work with separtors on any OS including Windows
