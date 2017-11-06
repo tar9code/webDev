@@ -12,7 +12,7 @@ router.get('/doit', function(req, res, next) {
 });
 
 module.exports = router;
-/*
+
 var bodyParser = require('body-parser');
 var path = require ('path'); //to work with separtors on any OS including Windows
 var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
@@ -28,4 +28,3 @@ router.post('/readNameAndRespond', function(req, res, next) {
     res.send("hello " + value_name);
 });
 
-*/
