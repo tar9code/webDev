@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="authenticationDatabase" value="heroku_1n3hp41c" />
+          <option name="authenticationMechanism" value="SCRAM-SHA-1" />
+          <option name="password" value="database925webDev" />
+          <option name="serverUrls">
+            <list>
+              <option value="ds153015.mlab.com:53015" />
+            </list>
+          </option>
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+          <option name="userDatabase" value="heroku_1n3hp41c" />
+          <option name="username" value="tarHaliax2" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPath" value="C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe" />
+  </component>
+</project>
