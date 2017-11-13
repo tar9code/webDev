@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-var controllerMongoCollection = require('../controllers/database'); //load controller code dealing with database mongodb and Routes collection
+var controllerMongoCollection = require('../controllers/database');
+//load controller code dealing with database mongodb and Routes collection
 
 //MAY HAVE OTHER CODE in index.js
 
@@ -11,7 +12,7 @@ var controllerMongoCollection = require('../controllers/database'); //load contr
 //**************************************************************************
 //***** mongodb get all of the Routes in Routes collection w
 //      and Render information iwith an ejs view
-//router.get('/getAllORDERS', controllerMongoCollection.getAllRoutes);
+router.get('/getAllOrders', controllerMongoCollection.getAllORDERS);
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
