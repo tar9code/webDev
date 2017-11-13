@@ -1,5 +1,5 @@
 var mongodb = require('mongodb');
-var mongoDBURI = process.env.MONGODB_URI || 'mongodb://heroku_1n3hp41c:database925webDev@ds153015.mlab.com:53015/heroku_1n3hp41c';
+var mongoDBURI = process.env.MONGODB_URI || 'mongodb://tarHaliax2:database925webDev@ds153015.mlab.com:53015/heroku_1n3hp41c';
 
 /** getAllRoutes controller logic that current does model logic too -connects to Mongo database and
  * queries the Routes collection to retrieve all the routes and build the output usig the
@@ -33,7 +33,7 @@ module.exports.getAllORDERS =  function (request, response) {
         Routes.find().toArray(function (err, docs) {
             if(err) throw err;
 
-            response.render('getAllRoutes', {results: docs});
+            response.render('getAllOrders', {results: docs});
 
         });
 
