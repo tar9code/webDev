@@ -11,7 +11,7 @@ var controllerMongoCollection = require('../controllers/database'); //load contr
 //**************************************************************************
 //***** mongodb get all of the Routes in Routes collection w
 //      and Render information iwith an ejs view
-//router.get('/getAllORDERS', controllerMongoCollection.getAllRoutes);
+router.get('/getAllORDERS', controllerMongoCollection.getAllRoutes);
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
