@@ -9,7 +9,8 @@
     <h2>Database Results getting ORDERS </h2>
     <ul>
         <% results.forEach(function(r) { %>
-        <li>Billing:  <%= r.BILLING_ID %></li>
+        <li>Order</li>
+        <ul>Billing:  <%= r.BILLING_ID %></ul>
         <ul>Customer: <%= r.CUSTOMER_ID %></ul>
         <ul>Date:     <%= r.DATE %></ul>
         <ul>Shipping: <%= r.SHIPPING_ID %></ul>
