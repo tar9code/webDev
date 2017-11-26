@@ -8,6 +8,44 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://tarHaliax2:database925web
  * @param response
  *
  */
+module.exports.storeData =  function (req, res, next) {
+    mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
+        if (err) throw err;
+        /**************************************************************************
+         * IMPORTANT:  this is how you generate  a random number for  3IDs that
+         * you will need for the collections cusomerID, billinID and   shippingID
+         *    WHY?  the retrieve _id  info after and  insert (see below)  does not seem
+         *     to function properly on Heroku
+         *    so to know the ID we simply generate it in code  rather than
+         *     autogenerate it for the documents we newly insert into the CUSOTMERS, BILLING, SHIPPING
+         *      for ORDERS we allow the system to autogenerate its  _id
+         */
+        var shipment_info = req.body.userInfo;
+        res.send("hello got php data");
+        var customerID = Math.floor((Math.random() * 1000000000000) + 1);
+        var billingID = Math.floor((Math.random() * 1000000000000) + 1);
+        var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
+        //customer collection operation
+        var CUSTOMERS = db.collection('CUSTOMERS');
+        /*CUSTOMERS.deleteMany({}, function (err, result) {
+        if (err) throw err;
+        });*/
+        var customerdata = {
+            _id: customerID,
+            FIRSTNAME: shipment_info['fname'],
+            LASTNAME: shipment_info['lname'],
+            STREET: shipment_info['add1'] + ' ' + shipment_info['add2'],
+            CITY: shipment_info['city'],
+            STATE: shipment_info['state'],
+            ZIP: shipment_info['zipcode'],
+            PHONE: shipment_info['phone']
+        };
+        CUSTOMERS.insertOne(customerdata, function (err, result) {
+            if (err) throw err;
+        })
+    });
+}
+
 module.exports.getAllORDERS =  function (request, response) {
 
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {

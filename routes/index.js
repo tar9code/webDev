@@ -14,6 +14,8 @@ var controllerMongoCollection = require('../controllers/database');
 //      and Render information iwith an ejs view
 router.get('/getAllOrders', controllerMongoCollection.getAllORDERS);
 
+router.post('/storeData', controllerMongoCollection.storeData);
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
