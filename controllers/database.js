@@ -9,6 +9,8 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://tarHaliax2:database925web
  *
  */
 module.exports.storeData =  function (req, res, next) {
+
+    res.send("hello got php data");
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
         /**************************************************************************
@@ -21,7 +23,6 @@ module.exports.storeData =  function (req, res, next) {
          *      for ORDERS we allow the system to autogenerate its  _id
          */
         var shipment_info = req.body.userInfo;
-        res.send("hello got php data");
         var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
