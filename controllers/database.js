@@ -20,7 +20,6 @@ module.exports.storeData =  function (req, res, next) {
     res.send("hello got php data.." + shipment_info);
     console.log( "the info: " + shipment_info);
     console.log( "first name: " + shipment_info.first);
-    console.log( "body: " + req.body);
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
         /**************************************************************************
