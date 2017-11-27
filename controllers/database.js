@@ -50,10 +50,10 @@ module.exports.storeData =  function (req, res, next) {
             STATE: shipment_info['state'],
             ZIP: shipment_info['zipcode'],
             PHONE: shipment_info['phone']*/
-        };
+        };/*
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
-        })
+        })*/
     });
 }
 
