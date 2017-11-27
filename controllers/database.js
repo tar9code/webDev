@@ -121,6 +121,7 @@ module.exports.storeData =  function (req, res, next) {
         })
 
     });
+    mongodb.close();
 }
 
 module.exports.getAllORDERS =  function (request, response) {
