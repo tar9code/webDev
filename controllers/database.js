@@ -20,7 +20,7 @@ module.exports.storeData =  function (req, res, next) {
     console.log("first name: " + req.body.first.toString());
     console.log("check: " + req.body.gotIt);
     // send response back to finalOrder.php saying that the data received
-
+    res.send("Order Successful");
     console.log( "the info: " + shipment_info);
     //console.log("last: " + req.body.userInfo.last);
 
@@ -120,7 +120,6 @@ module.exports.storeData =  function (req, res, next) {
             if (err) throw err;
         })
 
-        res.send("Order Successful");
     });
     mongodb.close();
 }
