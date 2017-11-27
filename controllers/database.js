@@ -21,6 +21,7 @@ module.exports.storeData =  function (req, res, next) {
     console.log("check: " + req.body.gotIt);
     res.send("hello got php data.." + shipment_info);
     //console.log( "the info: " + shipment_info);
+
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
         /**************************************************************************
@@ -42,13 +43,13 @@ module.exports.storeData =  function (req, res, next) {
         });*/
         var customerdata = {
             _id: customerID,
-            FIRSTNAME: shipment_info['fname'],
+            /*FIRSTNAME: shipment_info['fname'],
             LASTNAME: shipment_info['lname'],
             STREET: shipment_info['add1'] + ' ' + shipment_info['add2'],
             CITY: shipment_info['city'],
             STATE: shipment_info['state'],
             ZIP: shipment_info['zipcode'],
-            PHONE: shipment_info['phone']
+            PHONE: shipment_info['phone']*/
         };
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
