@@ -36,6 +36,7 @@ module.exports.storeData =  function (req, res, next) {
         var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
+        var orderID = Math.floor((Math.random() * 1000000000000) + 1);
         //customer collection operation
         var CUSTOMERS = db.collection('CUSTOMERS');
         /*CUSTOMERS.deleteMany({}, function (err, result) {
@@ -100,6 +101,22 @@ module.exports.storeData =  function (req, res, next) {
         SHIPPING.insertOne(shippingdata, function (err, result) {
             if (err) throw err;
         })
+
+        // add the order to the database
+        var ORDERS = db.collection('ORDERS')
+        var orderdata = {
+            _id: orderID,
+            CUSTOMER_ID: customerID,
+            BILLING_ID: billingID,
+            SHIPPING_ID: shippingID,
+            DATE: new Date(),
+            PRODUCT_VECTOR: "",
+            ORDER_TOTAL: 0
+        };
+        ORDERS.insertOne(orderdata, function (err, result) {
+            if (err) throw err;
+        })
+
     });
 }
 
