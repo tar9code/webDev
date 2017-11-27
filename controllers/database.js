@@ -19,9 +19,12 @@ module.exports.storeData =  function (req, res, next) {
     console.log( "got php data");
     console.log("first name: " + req.body.first.toString());
     console.log("check: " + req.body.gotIt);
+    // send response back to finalOrder.php saying that the data received
     res.send("Order Successful");
     console.log( "the info: " + shipment_info);
     //console.log("last: " + req.body.userInfo.last);
+
+    // connect to mongoDB database
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
         /**************************************************************************
