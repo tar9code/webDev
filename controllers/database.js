@@ -41,19 +41,39 @@ module.exports.storeData =  function (req, res, next) {
         /*CUSTOMERS.deleteMany({}, function (err, result) {
         if (err) throw err;
         });*/
-        var customerdata = {
-            _id: customerID,
-            FIRSTNAME: req.body.first,
-            LASTNAME: req.body.last,
-            STREET: req.body.address,
-            CITY: req.body.city,
-            STATE: req.body.state,
-            ZIP: req.body.zip,
-            EMAIL: req.body.email
-        };
+        var customerdata;
+        // same billing and shipping address
+        if (req.body.address2 == req.body.address)
+        {
+            customerdata = {
+                _id: customerID,
+                FIRSTNAME: req.body.first,
+                LASTNAME: req.body.last,
+                STREET: req.body.address,
+                CITY: req.body.city,
+                STATE: req.body.state,
+                ZIP: req.body.zip,
+                EMAIL: req.body.email
+            };
+        }
+        // different billing and shipping addresses
+        else {
+            customerdata = {
+                _id: customerID,
+                FIRSTNAME: req.body.first,
+                LASTNAME: req.body.last,
+                STREET: req.body.address2,
+                CITY: req.body.city2,
+                STATE: req.body.state2,
+                ZIP: req.body.zip2,
+                EMAIL: req.body.email
+            };
+        }
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
         })
+
+        // add billing data to database
         var BILLING = db.collection('BILLING');
         var billingdata = {
             _id: billingID,
@@ -64,6 +84,20 @@ module.exports.storeData =  function (req, res, next) {
             CREDITCARDSECURITYNUM: req.body.pCode
         };
         BILLING.insertOne(billingdata, function (err, result) {
+            if (err) throw err;
+        })
+
+        // add shipping data to database
+        var SHIPPING = db.collection('SHIPPING');
+        var shippingdata = {
+            _id: shippingID,
+            CUSTOMER_ID: customerID,
+            SHIPPING_STREET: req.body.address,
+            SHIPPING_CITY: req.body.city,
+            SHIPPING_STATE: req.body.state,
+            SHIPPING_ZIP: req.body.zip
+        };
+        SHIPPING.insertOne(shippingdata, function (err, result) {
             if (err) throw err;
         })
     });
