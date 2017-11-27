@@ -18,6 +18,7 @@ module.exports.storeData =  function (req, res, next) {
 
     console.log( "got php data");
     console.log("first name: " + req.body.first);
+    console.log("check: " + req.body.gotIt);
     res.send("hello got php data.." + shipment_info);
     console.log( "the info: " + shipment_info);
     console.log( "first name: " + shipment_info.first);
