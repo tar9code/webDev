@@ -120,9 +120,9 @@ module.exports.storeData =  function (req, res, next) {
             if (err) throw err;
         })
 
+        res.send("Order Successful");
     });
     mongodb.close();
-    res.send("Order Successful");
 }
 
 module.exports.getAllORDERS =  function (request, response) {
