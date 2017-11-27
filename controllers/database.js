@@ -110,8 +110,8 @@ module.exports.storeData =  function (req, res, next) {
             BILLING_ID: billingID,
             SHIPPING_ID: shippingID,
             DATE: new Date(),
-            PRODUCT_VECTOR: "",
-            ORDER_TOTAL: 0
+            PRODUCT_VECTOR: req.body.products,
+            ORDER_TOTAL: req.body.total
         };
         ORDERS.insertOne(orderdata, function (err, result) {
             if (err) throw err;
