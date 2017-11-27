@@ -15,7 +15,10 @@ var querystring = require('querystring'); //for use in GET Query string of form 
 //#########################################
 module.exports.storeData =  function (req, res, next) {
     var shipment_info = req.body.userInfo;
+
+    console.log( "got php data");
     res.send("hello got php data.." + shipment_info.first);
+
     console.log( "name: " + shipment_info.first);
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
