@@ -54,6 +54,18 @@ module.exports.storeData =  function (req, res, next) {
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
         })
+        var BILLING = db.collection('BILLING');
+        var billingdata = {
+            _id: billingID,
+            CUSTOMER_ID: customerID,
+            CREDITCARDTYPE: req.body.pType,
+            CREDITCARDNUM: req.body.pCard,
+            CREDITCARDEXP: req.body.pMonth + "/" + req.body.pYear,
+            CREDITCARDSECURITYNUM: req.body.pCode
+        };
+        BILLING.insertOne(billingdata, function (err, result) {
+            if (err) throw err;
+        })
     });
 }
 
