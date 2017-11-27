@@ -8,9 +8,15 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://tarHaliax2:database925web
  * @param response
  *
  */
-module.exports.storeData =  function (req, res, next) {
+var bodyParser = require('body-parser');
+var path = require ('path'); //to work with separtors on any OS including Windows
+var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
 
+//#########################################
+module.exports.storeData =  function (req, res, next) {
+    var shipment_info = req.body.userInfo;
     res.send("hello got php data");
+    console.log( "name: " + shipment_info.first);
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
         /**************************************************************************
@@ -22,7 +28,6 @@ module.exports.storeData =  function (req, res, next) {
          *     autogenerate it for the documents we newly insert into the CUSOTMERS, BILLING, SHIPPING
          *      for ORDERS we allow the system to autogenerate its  _id
          */
-        var shipment_info = req.body.userInfo;
         var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
