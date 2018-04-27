@@ -14,6 +14,7 @@ var controllerMongoCollection = require('../controllers/database');
 //      and Render information iwith an ejs view
 router.get('/getAllOrders', controllerMongoCollection.getAllORDERS);
 
+router.get('/db', controllerMongoCollection.db);
 // redirect post request from /storeData to the database.js file in the controllers folder
 router.post('/storeData', controllerMongoCollection.storeData);
 

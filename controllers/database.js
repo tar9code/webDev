@@ -167,3 +167,37 @@ module.exports.getAllORDERS =  function (request, response) {
         });
     });//end of connect
 };//end function
+
+module.exports.db =  function (request, response) {
+
+    mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
+        if(err) throw err;
+
+        //get collection of routes
+        var Routes = db.collection('Names');
+
+
+
+        //SECOND -show another way to make request for ALL Routes  and simply collect the  documents as an
+        //   array called docs that you  forward to the  getAllRoutes.ejs view for use there
+        Routes.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('db', {results: docs});
+
+        });
+
+
+        //Showing in comments here some alternative read (find) requests
+        //this gets Routes where frequency>=10 and sorts by name
+        // Routes.find({ "frequency": { "$gte": 10 } }).sort({ name: 1 }).toArray(function (err, docs) {
+        // this sorts all the Routes by name
+        //  Routes.find().sort({ name: 1 }).toArray(fu namenction (err, docs) {
+
+
+        //close connection when your app is terminating.
+        db.close(function (err) {
+            if(err) throw err;
+        });
+    });//end of connect
+};//end function
