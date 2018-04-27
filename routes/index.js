@@ -25,6 +25,30 @@ router.get('/doit', function(req, res, next) {
     res.render('doit', { title: 'Doit' });
 });
 
+var mongodb = require('mongodb');
+//var mongoDBURI = process.env.MONGODB_URI || ;
+
+app.get('/mongodb', function (request, response) {
+
+    mongodb.MongoClient.connect('mongodb://tarHaliax2:database925webDev@ds153015.mlab.com:53015/heroku_1n3hp41c', function(err, db) {
+        if(err) throw err;
+        //get collection of routes
+        var NamesDB = db.collection('Names');
+        //get all Routes with frequency >=1
+        NamesDB.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('getAllOrders', {results: docs});
+
+        });
+
+        //close connection when your app is terminating.
+        db.close(function (err) {
+            if(err) throw err;
+        });
+    });//end of connect
+});//end app.get
+
 module.exports = router;
 
 var bodyParser = require('body-parser');
