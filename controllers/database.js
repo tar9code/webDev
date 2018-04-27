@@ -169,14 +169,14 @@ module.exports.getAllORDERS =  function (request, response) {
 };//end function
 
 module.exports.db =  function (request, response) {
-
+    console.log( "hi world");
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
-
+        console.log( "connect to database" );
         //get collection of routes
         var Routes = db.collection('Names');
 
-
+        console.log( "in table " );
 
         //SECOND -show another way to make request for ALL Routes  and simply collect the  documents as an
         //   array called docs that you  forward to the  getAllRoutes.ejs view for use there
